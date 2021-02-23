@@ -1,0 +1,23 @@
+* Para instalar o yarn rodar o comando 'npm install -g yarn'. 
+Se der erro rode 'Set-ExecutionPolicy RemoteSigned' com o VS Code aberto como adm.
+
+* Para inicializar o yarn => yarn init -y
+O -y indica que a inicialização será feita com as configurações padrões.
+
+* Para adicionar a dependencia express => yarn add express
+
+* Para adicionar as tipagens do express que ficam em uma bbt externa => yarn add @types/express -D
+O -D é para indicar que é para instalar apenas em desenvolvimento.
+
+* Para instalar o typescrip rodar o comando 'yarn add typescript -D'. 
+
+* Para inicializar o TypeScrip na aplicação => yarn tsc --init
+
+* Para converter o codigo em TS para JS em tempo de execução, 
+executar o comando 'yarn add ts-node-dev' para instalar a dependencia
+
+* Para rodas o projeto => yarn dev
+
+------------------------------------------------------------------------------
+
+* Toda configurações do TypeScript é feita dentro do arquivo tsconfig
