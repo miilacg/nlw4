@@ -1,0 +1,30 @@
+/*o modules é uma forma desse estilo afetar apenas o componente que eu quero*/
+.experienceBar {
+    display: flex;
+    align-items: center;
+}
+
+.experienceBar span {
+    font-size: 1rem;
+}
+
+.experienceBar > div { /*apenas a div que ta exatamente depois da experience-bar*/
+    flex: 1; /*ocupa a largura maxima do container*/
+    height: 4px;
+    border-radius: 4px;
+    background: var(--gray-line);
+    margin: 0 1.5rem;
+    position: relative;
+}
+
+.experienceBar > div > div {
+    height: 4px;
+    border-radius: 4px;
+    background: var(--green);
+}
+
+span.currentExperience {
+    position: absolute;
+    top: 12px;
+    transform: translateX(-50%);
+}
