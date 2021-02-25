@@ -2,10 +2,15 @@
 //coloca aqui o que não muda em nenhuma pagina
 import '../styles/global.css'
 
+import { ChallengesProvider } from '../contexts/ChallengesContexts'
 
 //esse app é fixo e fica envolta dos outros componentes
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <ChallengesProvider> 
+        <Component {...pageProps} />
+    </ChallengesProvider>
+  )
 }
 
 export default MyApp

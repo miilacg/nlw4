@@ -1,6 +1,5 @@
 import { useState } from 'react'; 
 
-//em TS pode ser tanto type quanto interface
 interface ButtonProps {
     color: string;
     children: string;

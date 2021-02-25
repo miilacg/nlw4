@@ -1,11 +1,14 @@
 //useState => funcionalidade para definir estados dentro do componente
 //useEffect => funcionalidade para disparar efeitos colaterais (quando algo acontecer um efeito e gerado)
-import { useState, useEffect } from 'react'; 
+import { useState, useEffect, useContext } from 'react'; 
+import { ChallengesContext } from '../contexts/ChallengesContexts';
 import styles from '../styles/components/Countdown.module.css';
 
 let countdownTimeout: NodeJS.Timeout;
 
 export function Countdown() {
+    const { startNewChallenge } = useContext(ChallengesContext);
+
     //o useState retorna um array com a variavel e com a função de atualização
     //quando o estado é definido dentro do componente, cada novo componente tera um estado diferente
     //em useState passar o valor que eu quero inicializar o estado
@@ -41,6 +44,7 @@ export function Countdown() {
             if (isActive && time == 0){ //se ainda estiver ativo mas o contador já tiver chegado em 0
                 setHasFinished(true);
                 setIsActive(false);
+                startNewChallenge();
             }
         }
     }, [isActive, time]) 
