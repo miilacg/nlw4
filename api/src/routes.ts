@@ -1,8 +1,10 @@
 import { Router } from 'express';
+import { SurveysController } from './controllers/SurveysController';
 import { UserController } from './controllers/UserController';
 
 const router = Router();
 const userController = new UserController();
+const surveysController = new SurveysController();
 
 /*
     GET => busca
@@ -17,5 +19,9 @@ const userController = new UserController();
 //parametro 1 => rota (recurso API = 'users')
 //parametro 2 => requist, response (no caso, o segundo parametro chama o metodo que tem o request e response)
 router.post("/users", userController.create);
+
+router.post('/surveys', surveysController.create);
+router.get('/surveys', surveysController.show);
+
 
 export { router };
