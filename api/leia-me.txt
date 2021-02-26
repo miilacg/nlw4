@@ -28,8 +28,38 @@ A migration é como se fosse um historico do que está sendo feito em relação 
 
 * Para rodar a migrate => yarn typeorm migration:run
 
+* Para instalar as ferramentas para os testes automatizados e as dependencias => yarn add jest @types/jest -D 
+
+* Para criar o arquivo de configuração do jest => yarn jest --init
+y y node n v8 y
+
+* BBT para trabalhar com TS dentro dos testes => yarn add ts-jest  @types/jest  -D
+
+* Para rodar os testes => yarn test
+
+* yarn add supertext @types/supertest -D
+
 * Para rodar o projeto => yarn dev
+
+* "posttest": "rimraf ./src/database/database.test.sqlite" /* exclui o bd depois do teste */
 
 ------------------------------------------------------------------------------
 
 * Toda configurações do TypeScript é feita dentro do arquivo tsconfig
+
+------------------------------------------------------------------------------
+
+Testes automatizados
+
+1 - Testes unitários
+Geralmente é utilizado quando ta fazendo o TDD (quando a gente começa o codigo orientado a testes).
+O teste nunca é feito fazendo acesso ao BD e nem a APIs externas.
+
+2 - Testes de integração
+Testa a funcionalidade completa da integração. Testa todo o fluxo
+-> request -> routes -> controller -> repository
+<- repository <- controller <- response
+
+3 - Testes ponta a ponta
+Testa toda a ação do usuário em uma aplicação.
+Mais utilizado quando está trabalhando com aplicações front-end
