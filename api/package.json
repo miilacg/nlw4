@@ -10,7 +10,10 @@
     "posttest": "rimraf ./src/database/database.test.sqlite"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "handlebars": "^4.7.7",
+    "nodemailer": "^6.5.0",
     "package": "^1.0.1",
     "reflect-metadata": "^0.1.13",
     "sqlite3": "^5.0.2",
@@ -21,7 +24,7 @@
   "devDependencies": {
     "@types/express": "^4.17.11",
     "@types/jest": "^26.0.20",
-    "@types/mocha": "^8.2.1",
+    "@types/nodemailer": "^6.4.0",
     "@types/supertest": "^2.0.10",
     "@types/uuid": "^8.3.0",
     "cross-env": "^7.0.3",

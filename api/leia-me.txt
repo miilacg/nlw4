@@ -39,7 +39,11 @@ y y node n v8 y
 
 * yarn add supertext @types/supertest -D
 
-* Para rodar o projeto => yarn dev
+* Modulo para permitir o envio de email => yarn add nodemailer @types/nodemailer -D
+
+* Para rodar o projeto => yarn 
+
+* Personalizar o template => yarn add handlebars 
 
 * "posttest": "rimraf ./src/database/database.test.sqlite" /* exclui o bd depois do teste */
 

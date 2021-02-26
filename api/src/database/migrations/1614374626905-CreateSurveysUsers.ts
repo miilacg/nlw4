@@ -12,12 +12,12 @@ export class CreateSurveysUsers1614358120494 implements MigrationInterface {
                         isPrimary: true
                     },
                     {
-                        name: "user_id", //vai referenciar o usuario que ta repondendo essa pesquisa
+                        name: 'user_id', //vai referenciar o usuario que ta repondendo essa pesquisa
                         type: "uuid",
                     },
                     {
-                        name: "survey_id",
-                        type: "uuid"
+                        name: 'survey_id',
+                        type: 'uuid',
                     },
                     {
                         name: "value",
@@ -35,23 +35,23 @@ export class CreateSurveysUsers1614358120494 implements MigrationInterface {
                 foreignKeys: [ //precisa fazer isso pq tem chaves estrangeiras
                     {
                         name: "FKUser",
-                        referencedTableName: "users",
-                        referencedColumnNames: ["id"], //espera um array
-                        columnNames: ["user_id"],
+                        referencedTableName: 'users',
+                        referencedColumnNames: ['id'], //espera um array
+                        columnNames: ['user_id'],
                         onDelete: "CASCADE", //quando algum dado que a tabela surveys_users fizer referencia for alterado
                         onUpdate: "CASCADE" //a surveys_users tbm será alterada automaticamente
                     },
                     {
-                        name: "FKSurvey",
-                        referencedTableName: "surveys",
-                        referencedColumnNames: ["id"], 
-                        columnNames: ["survey_id"],
-                        onDelete: "CASCADE",
-                        onUpdate: "CASCADE"
-                    }
+                        name: 'FKSurvey',
+                        referencedTableName: 'surveys',
+                        referencedColumnNames: ['id'],
+                        columnNames: ['survey_id'],
+                        onDelete: 'CASCADE',
+                        onUpdate: 'CASCADE',
+                    },
                 ] 
             })
-        )
+        );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

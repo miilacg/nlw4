@@ -5,34 +5,35 @@ import { User } from './User';
   
 @Entity('surveys_users')
 class SurveyUser {
-@PrimaryColumn()
-readonly id: string;
+    @PrimaryColumn()
+    readonly id: string;
 
-@Column()
-user_id: string;
+    @Column()
+    user_id: string;
 
-@ManyToOne(() => User)
-@JoinColumn({ name: 'user_id' })
-user: User;
+    @ManyToOne(() => User)
+    @JoinColumn({ name:"user_id" })
+    user: User;
 
-@Column()
-survey_id: string;
+    @Column()
+    survey_id: string;
 
-@ManyToOne(() => Survey)
-@JoinColumn({ name: 'survey_id' })
-survey: Survey;
+    @ManyToOne(() => Survey)
+    @JoinColumn({ name:"survey_id" })
+    survey: Survey;
 
-@Column()
-value: number;
+    @Column()
+    value: number;
 
-@CreateDateColumn()
-created_at: Date;
+    @CreateDateColumn()
+    created_at: Date;
 
-constructor() {
-    if (!this.id) {
-    this.id = uuid();
+    constructor() {
+        if (!this.id) {
+        this.id = uuid();
+        }
     }
-}
 }
   
 export { SurveyUser };
+
