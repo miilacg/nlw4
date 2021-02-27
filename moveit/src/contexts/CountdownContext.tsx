@@ -26,7 +26,7 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
     //o useState retorna um array com a variavel e com a função de atualização
     //quando o estado é definido dentro do componente, cada novo componente tera um estado diferente
     //em useState passar o valor que eu quero inicializar o estado
-    const [time, setTime] = useState(0.05 * 60); //tempo em segundos
+    const [time, setTime] = useState(25 * 60); //tempo em segundos
     const [isActive, setIsActive] = useState(false); //o usuario precisa clicar no botão para ativar
     const [hasFinished, setHasFinished] = useState(false);
 
@@ -41,7 +41,7 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
         clearTimeout(countdownTimeout); //cancela a execução do setTimeout
         setIsActive(false);
         setHasFinished(false);
-        setTime(0.05 * 60);
+        setTime(25 * 60);
     }
 
     //precisa passar dois parametros e o primeiro parametro e sempre o que eu quero executar (uma função)

@@ -1,11 +1,11 @@
 import { useContext } from 'react';
-import { ChallengesContext } from '../contexts/ChallengesContexts';
 import { CountdownContext } from '../contexts/CountdownContext';
-
+import { useChallenges } from '../hooks/useChallegens';
 import style from '../styles/components/ChallengeBox.module.css';
 
+
 export function ChallengeBox(){
-    const { activeChallenge, resetChallenge, completedChallenge } = useContext(ChallengesContext); //se o activeChallenge estiver null significa que eu não tenho um challenge ativo
+    const { activeChallenge, resetChallenge, completedChallenge } = useChallenges(); //se o activeChallenge estiver null significa que eu não tenho um challenge ativo
     const { resetCountdown } = useContext(CountdownContext);
 
     function handleChallengeCompleted(){
