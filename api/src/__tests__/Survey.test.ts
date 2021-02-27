@@ -1,4 +1,5 @@
 import request from 'supertest';
+import { getConnection } from 'typeorm';
 import { app } from '../app';
 
 import createConnection from '../database';
@@ -7,6 +8,12 @@ describe('Surveys', () => {
     beforeAll(async () => {
         const connection = await createConnection();
         await connection.runMigrations();
+      });
+
+    afterAll(async() => { //sempre depois que um teste for executado
+        const connection = getConnection();
+        await connection.dropDatabase(); //remove as tabelas que foram criadas
+        await connection.close();
     });
 
     it('Should be able to create a new survey', async () => { //descrever bem o que vai ser feito no teste
@@ -16,7 +23,7 @@ describe('Surveys', () => {
         });
     
         expect(response.status).toBe(201); //o resultado que eu espero
-        expect(response.body).toHaveProperty("id");
+        expect(response.body).toHaveProperty('id');
     });
 
     it('Should be able to get all surveys', async () => {
@@ -26,6 +33,6 @@ describe('Surveys', () => {
         });
 
         const response = await request(app).get('/surveys');
-        expect(response.body.lenght).toBe(2); 
+        expect(response.body.length).toBe(2); 
     });
 });

@@ -47,6 +47,8 @@ y y node n v8 y
 
 * "posttest": "rimraf ./src/database/database.test.sqlite" /* exclui o bd depois do teste */
 
+* "test": "cross-env NODE_ENV=test jest -i" /* o -i é pra um teste rodar depois do outro */
+
 ------------------------------------------------------------------------------
 
 * Toda configurações do TypeScript é feita dentro do arquivo tsconfig
