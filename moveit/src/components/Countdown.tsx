@@ -1,53 +1,23 @@
 //useState => funcionalidade para definir estados dentro do componente
 //useEffect => funcionalidade para disparar efeitos colaterais (quando algo acontecer um efeito e gerado)
-import { useState, useEffect, useContext } from 'react'; 
-import { ChallengesContext } from '../contexts/ChallengesContexts';
+import { useContext } from 'react';
+import { CountdownContext } from '../contexts/CountdownContext';
 import styles from '../styles/components/Countdown.module.css';
 
-let countdownTimeout: NodeJS.Timeout;
-
 export function Countdown() {
-    const { startNewChallenge } = useContext(ChallengesContext);
+    const { 
+        minutes, 
+        seconds, 
+        hasFinished,
+        isActive,
+        startCountdown,
+        resetCountdown
+    } = useContext(CountdownContext);
 
-    //o useState retorna um array com a variavel e com a função de atualização
-    //quando o estado é definido dentro do componente, cada novo componente tera um estado diferente
-    //em useState passar o valor que eu quero inicializar o estado
-    const [time, setTime] = useState(0.05 * 60); //tempo em segundos
-    const [isActive, setIsActive] = useState(false); //o usuario precisa clicar no botão para ativar
-    const [hasFinished, setHasFinished] = useState(false);
-
-    const minutes = Math.floor(time / 60); //arredonda para baixo
-    const seconds = time % 60;
-
+    //essas variaveis não foram para o context pq a formatação faz parte do layout da aplicação
     //se a string não tiver dois caracteres o padStart coloca 0 na primeira posição
     const [minuteLeft, minuteRight]  = String(minutes).padStart(2, '0').split('');
     const [secondLeft, secondRight]  = String(seconds).padStart(2, '0').split('');
-
-    function starCountdown(){
-        setIsActive(true);
-    }
-
-    function resetCountdown(){
-        clearTimeout(countdownTimeout); //cancela a execução do setTimeout
-        setIsActive(false);
-        setTime(0.05 * 60);
-    }
-
-    //precisa passar dois parametros e o primeiro parametro e sempre o que eu quero executar (uma função)
-    //o segundo parametro e quando eu quero executar
-    useEffect(() => {
-        if (isActive && time > 0){ //muda o tempo quando o contador esta ativo
-            countdownTimeout = setTimeout(() => { 
-                setTime(time - 1);
-            }, 1000) //a cada segundo diminui um segundo
-        }else {
-            if (isActive && time == 0){ //se ainda estiver ativo mas o contador já tiver chegado em 0
-                setHasFinished(true);
-                setIsActive(false);
-                startNewChallenge();
-            }
-        }
-    }, [isActive, time]) 
 
     return (
         <div>
@@ -85,7 +55,7 @@ export function Countdown() {
                         <button 
                             type="button" 
                             className={ styles.countdownButton }
-                            onClick={ starCountdown }
+                            onClick={ startCountdown }
                         >               
                             Iniciar um ciclo
                         </button>

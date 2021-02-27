@@ -1,5 +1,5 @@
 //o contexto é uma forma da gente ter acesso a uma informação de diversos lugares
-import { createContext, useState, ReactNode, VideoHTMLAttributes  } from 'react'; //usa o ReactNode quando o tipo do componente é um componente react
+import { createContext, ReactNode, useEffect, useState } from 'react'; //usa o ReactNode quando o tipo do componente é um componente react
 import challenges from '../../challenges.json';
 
 interface Challenge {
@@ -16,6 +16,7 @@ interface ChallengesContextData {
     levelUp: () => void; 
     startNewChallenge: () => void;
     resetChallenge: () => void;
+    completedChallenge: () => void;
     activeChallenge: Challenge;
 }
 
@@ -36,8 +37,13 @@ export function ChallengesProvider ({ children }: ChallengesProviderProps){
 
     const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
 
+    useEffect(() => {
+        Notification.requestPermission();
+    }, []) //quando passa um array vazio como segundo parametro significa que a função só será executada uma unica vez quando esse componente for chamado
+
+
     function levelUp(){
-        setLevel(level + 1);
+        setLevel(level + 1); //eu preciso criar um novo valor para level ao inves de mudar o valor dele
     }
 
     function startNewChallenge() {
@@ -45,10 +51,36 @@ export function ChallengesProvider ({ children }: ChallengesProviderProps){
         const challenge = challenges[randamChallengeIndex];
 
         setActiveChallenge(challenge);
+
+        new Audio('/notification.mp3').play();
+
+        if(Notification.permission === 'granted'){
+            new Notification('Novo desafio 🎉', {
+                body: `Valendo ${challenge.amount}xp!`
+            })
+        }
     }
 
     function resetChallenge(){ //função chamada quando o usuario falhar
         setActiveChallenge(null);
+    }
+
+    function completedChallenge(){ // não precisa receber paramentro pq da pra saber o desafio ativo pela activeChallenge
+        if (!activeChallenge){ // essa função não pode ser chamada se o usuario não tiver com um desafio ativo
+            return;
+        }
+
+        const { amount } = activeChallenge; //amout e a quantidade de xp do desafio
+        let finalExperience = currentExperience + amount;
+
+        if (finalExperience >= experienceToNextLevel){ //se for maior eu preciso subir de nível
+            finalExperience = finalExperience - experienceToNextLevel;
+            levelUp();
+        }
+
+        setCurrentExperience(finalExperience);
+        setActiveChallenge(null);
+        setChallengesCompleted(challengesCompleted + 1); //numero de desafios completos
     }
 
 
@@ -63,7 +95,8 @@ export function ChallengesProvider ({ children }: ChallengesProviderProps){
                 startNewChallenge, 
                 activeChallenge, 
                 resetChallenge,
-                experienceToNextLevel
+                experienceToNextLevel,
+                completedChallenge
             }}
         > 
             { children }

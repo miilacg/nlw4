@@ -8,3 +8,7 @@ Dessa forma só tem a funcionalidade do SPA
 * Para inicializar o projeto com o creat next => yarn dev
 
 * Para instalar o typescript, as tipagens do react, as tipagens do react-DOM e o node => yarn add typescript @types/react @types/react-dom @types/node -D
+
+------------------------------------------------------------------------------------
+
+* Na pasta contexts são colocados os codigos referentes as regras de negocio da empresa
