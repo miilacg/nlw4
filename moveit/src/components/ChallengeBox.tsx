@@ -34,14 +34,14 @@ export function ChallengeBox(){
                     <footer>
                         <button 
                             type="button"
-                            className={ style.challengeFailedButton}
+                            className={ style.challengeFailedButton }
                             onClick={ handleChallengeFailed }
                         >
                             Falhei
                         </button>
                         <button 
                             type="button"
-                            className={ style.challengeCompletedButton}
+                            className={ style.challengeCompletedButton }
                             onClick={ handleChallengeCompleted }
                         >
                             Completei
@@ -49,7 +49,7 @@ export function ChallengeBox(){
                     </footer>
                 </div>
             ) : (
-                <div className={ style.challengeNotActive}>
+                <div className={ style.challengeNotActive }>
                     <strong> 
                         Inicie um ciclo para receber desafios a serem completados
                     </strong>
