@@ -3,7 +3,7 @@
 import '../styles/global.css'
 
 
-//esse app é fixo e fica envolta dos outros componentes
+//esse app é fixo e fica em volta de todas as páginas
 function MyApp({ Component, pageProps }) {
   return (
     <Component {...pageProps} />
